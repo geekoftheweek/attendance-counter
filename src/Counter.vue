@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <p>{{ counters[name].current }} - {{ counters !== undefined ? counters[name].history : [] }}</p>
+    <h2><button @click='deleteCounter'>X</button>{{name}}</h2>
+    <div>{{ counters[name].current }} - {{ counters !== undefined ? counters[name].history : [] }}</div>
     <div>
-      <button @click='increment'>Increment</button>
       <button @click='reset'>Reset</button>
+      <button @click='done'>Done</button>
+      <button @click='increment'>Increment</button>
     </div>
-    <button @click='done'>Done</button>
   </div>
 </template>
 
@@ -24,6 +25,9 @@ export default {
     },
     done() {
       this.$store.dispatch('SAVE_AND_RESET_CURRENT', { counterName: this.name })
+    },
+    deleteCounter() {
+      this.$store.dispatch('DELETE_COUNTER', { counterName: this.name })
     }
   },
   computed: mapState(['counters'])

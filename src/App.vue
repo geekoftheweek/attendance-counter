@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <div>
-      <p>json is: {{json}}</p>
+      <!--<p>json is: {{json}}</p>-->
       <p>totalCount is: {{totalCount}}</p>
       <button @click='resetAll'>Start Over</button>
+      <div>
+        <input type="text" placeholder="Name" v-model="newCounterName">
+        <button @click='addCounter'>Add</button>
+      </div>
       <Counter v-for="counter in counters" :name="counter.name" :init-count="counter.current" :init-history="counter.history" :key="counter.name"></Counter>
-    </div>
-    <div>
-      <input type="text" placeholder="Name" v-model="newCounterName">
-      <button @click='addCounter'>Add</button>
     </div>
   </div>
 </template>
@@ -40,6 +40,7 @@ export default {
     },
     addCounter() {
       this.$store.dispatch('ADD_COUNTER', { counterName: this.newCounterName })
+      this.newCounterName = ''
     }
   }
 

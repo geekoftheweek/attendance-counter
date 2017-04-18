@@ -11,45 +11,42 @@ export default new Vuex.Store({
   actions: {
     LOAD_COUNTER_LIST: function({ commit }) {
       // fetch data
-      var remoteData = {
-        left: {
-          name: 'left',
-          current: 0,
-          history: [1, 7, 4]
-        },
-        right: {
-          name: 'right',
-          current: 0,
-          history: [6, 8]
-        },
-        center: {
-          name: 'center',
-          current: 0,
-          history: [0, 2]
-        }
+      var value = localStorage.getItem('counters')
+
+      if (value === null || value === '') {
+        localStorage.setItem('counters', {})
+        value = '{}'
       }
-      commit('SET_COUNTER_LIST', { counters: remoteData })
+
+      var obj = JSON.parse(value)
+      commit('SET_COUNTER_LIST', { counters: obj })
     },
     ADD_COUNTER: function({ commit }, { counterName }) {
       commit('ADD_COUNTER', { counterName })
+      commit('PERSIST')
     },
     DELETE_COUNTER: function({ commit }, { counterName }) {
       commit('DELETE_COUNTER', { counterName })
+      commit('PERSIST')
     },
     INCREMENT_CURRENT: function({ commit }, { counterName }) {
       commit('INCREMENT_CURRENT', { counterName })
+      commit('PERSIST')
     },
     RESET_CURRENT: function({ commit }, { counterName }) {
       commit('RESET_CURRENT', { counterName })
+      commit('PERSIST')
     },
     RESET_ALL: function({ commit, state }) {
-      state.counters.forEach(counterName => {
+      Object.keys(state.counters).forEach(counterName => {
         commit('RESET_CURRENT', { counterName })
         commit('RESET_HISTORY', { counterName })
       })
+      commit('PERSIST')
     },
     SAVE_AND_RESET_CURRENT: function({ commit }, { counterName }) {
       commit('SAVE_AND_RESET_CURRENT', { counterName })
+      commit('PERSIST')
     }
   },
 
@@ -61,8 +58,8 @@ export default new Vuex.Store({
         history: []
       })
     },
-    REMOVE_COUNTER: (state, { counterName }) => {
-      delete state.counters[counterName]
+    DELETE_COUNTER: (state, { counterName }) => {
+      Vue.delete(state.counters, counterName)
     },
     SET_COUNTER_LIST: (state, { counters }) => {
       state.counters = counters
@@ -79,18 +76,18 @@ export default new Vuex.Store({
     SAVE_AND_RESET_CURRENT: (state, { counterName }) => {
       state.counters[counterName].history.push(state.counters[counterName].current)
       state.counters[counterName].current = 0
+    },
+    PERSIST: (state) => {
+      localStorage.setItem('counters', JSON.stringify(state.counters))
     }
   },
 
   getters: {
     totalCount: state => {
       var sum = 0
-      /*
-      return sum + state.counters.reduce((acc, val) => {
+      return sum + Object.keys(state.counters).reduce((acc, val) => {
         return acc + (state.counters[val].history.length ? (Math.max(...(state.counters[val].history))) : 0)
       }, 0)
-      */
-      return sum
     },
     json: state => {
       return JSON.stringify(state)
