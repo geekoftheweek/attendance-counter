@@ -1,11 +1,24 @@
 <template>
-  <div id="app">
-    <h2><button @click='deleteCounter'>X</button>{{name}}</h2>
-    <div>{{ counters[name].current }} - {{ counters !== undefined ? counters[name].history : [] }}</div>
-    <div>
-      <button @click='reset'>Reset</button>
-      <button @click='done'>Done</button>
-      <button @click='increment'>Increment</button>
+  <div id="app" class="text-xs-center">
+    <div class="heading">
+        <v-btn light flat @click.native='deleteCounter' icon="icon">
+          <v-icon>delete_forever</v-icon>
+        </v-btn>
+        <span>{{name}}</span>
+    </div>
+    <div class="count">
+      <div>{{ counters[name].current }} - {{ counters !== undefined ? counters[name].history : [] }}</div>
+    </div>
+    <div class="buttons">
+      <v-btn flat @click.native='reset' icon="icon">
+        <v-icon>backspace</v-icon>
+      </v-btn>
+      <v-btn flat @click.native='done' icon="icon">
+        <v-icon>save</v-icon>
+      </v-btn>
+      <v-btn flat @click.native='increment' icon="icon">
+        <v-icon>plus_one</v-icon>
+      </v-btn>
     </div>
   </div>
 </template>
@@ -35,30 +48,13 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.heading {
+  font-size: 2em;
 }
-
-h1, h2 {
-  font-weight: normal;
+.count {
+  font-size: 1.5em;
 }
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+.buttons {
+  font-size: 3em;
 }
 </style>
