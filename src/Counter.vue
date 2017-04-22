@@ -1,25 +1,33 @@
 <template>
-  <div id="app" class="text-xs-center">
-    <div class="heading">
-        <v-btn light flat @click.native='deleteCounter' icon="icon">
-          <v-icon>delete_forever</v-icon>
+  <div id="app">
+    <v-card class="ma-4">
+      <v-card-row class="accent white--text">
+        <v-card-title>
+          <span>{{name}}</span>
+          <v-spacer></v-spacer>
+          <v-btn flat @click.native='deleteCounter' icon="icon" class="white--text">
+            <v-icon>delete_forever</v-icon>
+          </v-btn>
+        </v-card-title>
+      </v-card-row>
+      <v-card-text>
+        <div class="display-2">
+          <div>{{ counters[name].current }} - {{ counters !== undefined ? counters[name].history : [] }}</div>
+        </div>
+      </v-card-text>
+      <v-card-row actions>
+        <v-btn flat @click.native='reset'>
+          <v-icon left>backspace</v-icon>RESET
         </v-btn>
-        <span>{{name}}</span>
-    </div>
-    <div class="count">
-      <div>{{ counters[name].current }} - {{ counters !== undefined ? counters[name].history : [] }}</div>
-    </div>
-    <div class="buttons">
-      <v-btn flat @click.native='reset' icon="icon">
-        <v-icon>backspace</v-icon>
-      </v-btn>
-      <v-btn flat @click.native='done' icon="icon">
-        <v-icon>save</v-icon>
-      </v-btn>
-      <v-btn flat @click.native='increment' icon="icon">
-        <v-icon>plus_one</v-icon>
-      </v-btn>
-    </div>
+        <v-spacer></v-spacer>
+        <v-btn flat @click.native='done'>
+          <v-icon left>save</v-icon>SAVE
+        </v-btn>
+        <v-btn flat @click.native='increment'>
+          <v-icon left>plus_one</v-icon>ADD
+        </v-btn>
+      </v-card-row>
+    </v-card>
   </div>
 </template>
 
@@ -31,6 +39,7 @@ export default {
   props: ['name'],
   methods: {
     increment() {
+      window.navigator.vibrate(50)
       this.$store.dispatch('INCREMENT_CURRENT', { counterName: this.name })
     },
     reset() {
@@ -48,13 +57,4 @@ export default {
 </script>
 
 <style>
-.heading {
-  font-size: 2em;
-}
-.count {
-  font-size: 1.5em;
-}
-.buttons {
-  font-size: 3em;
-}
 </style>
