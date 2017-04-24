@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <v-toolbar>
-      <v-toolbar-title>Attendance Count: {{totalCount}}</v-toolbar-title>
+      <v-toolbar-title>{{totalCount}} Total</v-toolbar-title>
       <v-btn flat dark @click.native='resetAll'>RESET</v-btn>
       <v-modal v-model="showAdd">
        <v-btn flat dark slot="activator">NEW</v-btn>

@@ -12,7 +12,8 @@ npm install
 npm run dev
 
 # build for production with minification
-npm run build
+# npm run build
+vue build src/main.js --prod --config config.js
 ```
 
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
