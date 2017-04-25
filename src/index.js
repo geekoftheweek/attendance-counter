@@ -6,7 +6,6 @@ import App from './App.vue'
 import store from './store';
 
 import 'vuetify/dist/vuetify.min.css'
-// import 'http://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
 
 new Vue({
   el: '#app',
