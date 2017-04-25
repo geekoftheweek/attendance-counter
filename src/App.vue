@@ -2,7 +2,7 @@
   <v-app id="app">
     <v-toolbar>
       <v-toolbar-title>{{totalCount}} Total</v-toolbar-title>
-      <v-btn flat dark @click.native='resetAll'>RESET</v-btn>
+      <v-btn flat dark @click.native='resetAll'>RESET ALL</v-btn>
       <v-modal v-model="showAdd">
        <v-btn flat dark slot="activator">NEW</v-btn>
        <v-card class="primary white--text">

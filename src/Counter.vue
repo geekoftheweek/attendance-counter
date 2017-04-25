@@ -1,30 +1,26 @@
 <template>
-  <div id="app">
-    <v-card class="ma-4">
+  <div class="counter">
+    <v-card class="ma-2">
       <v-card-row class="accent white--text">
         <v-card-title>
-          <span>{{name}}</span>
-          <v-spacer></v-spacer>
           <v-btn flat @click.native='deleteCounter' icon="icon" class="white--text">
-            <v-icon>delete_forever</v-icon>
+            <v-icon>close</v-icon>
           </v-btn>
+          <v-spacer></v-spacer>
+          <span>{{ name }} - {{ counters[name].current }}</span>
         </v-card-title>
       </v-card-row>
-      <v-card-text>
-        <div class="display-2">
-          <div>{{ counters[name].current }} - {{ counters !== undefined ? counters[name].history : [] }}</div>
-        </div>
-      </v-card-text>
       <v-card-row actions>
         <v-btn flat @click.native='reset'>
-          <v-icon left>backspace</v-icon>RESET
+          <v-icon>refresh</v-icon>
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn flat @click.native='done'>
-          <v-icon left>save</v-icon>SAVE
+        <v-card-text class="text-xs-center">{{ counters[name].history.length ? 'History: ' + counters[name].history.join(', ') : '' }}</v-card-text>
+        <v-btn success large @click.native='done'>
+          <v-icon>done</v-icon>
         </v-btn>
-        <v-btn flat @click.native='increment'>
-          <v-icon left>plus_one</v-icon>ADD
+        <v-btn primary large @click.native='increment'>
+          <v-icon class="display-1">plus_one</v-icon>
         </v-btn>
       </v-card-row>
     </v-card>
