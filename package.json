@@ -1,18 +1,18 @@
 {
-  "name": "vuex-experiments",
-  "description": "A Vue.js project",
+  "name": "attendance-counter",
+  "description": "A lightweight web app for reliably counting people at rest.",
   "version": "1.0.0",
-  "author": "Warren Francis <warren.francis@scotts.com>",
+  "author": "Warren Francis <francis.141@osu.edu>",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
-  "dependencies": {
-    "vue": "^2.2.1",
-    "vuex": "^2.2.1"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "vue-cli": "^2.8.1",
+    "vue": "^2.2.1",
+    "vuex": "^2.2.1",
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
     "babel-preset-latest": "^6.0.0",

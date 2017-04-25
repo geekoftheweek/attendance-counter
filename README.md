@@ -1,6 +1,6 @@
-# vuex-experiments
+# attendance-counter
 
-> A Vue.js project
+> A lightweight web app for reliably counting people at rest.  See it in action at http://warrenfrancis.com/counter
 
 ## Build Setup
 
@@ -8,12 +8,10 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+# serve with hot reload at localhost:4000
+vue build --config config.js
 
 # build for production with minification
-# npm run build
-vue build src/main.js --prod --config config.js
+vue build --prod --config config.js
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
