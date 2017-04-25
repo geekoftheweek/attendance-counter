@@ -1,7 +1,8 @@
 path = require('path')
 
 module.exports = {
-  "html": {
+  entry: "src/index.js",
+  html: {
     "title": "Counter",
     "template": path.join(__dirname, 'templates/index.html')
   }

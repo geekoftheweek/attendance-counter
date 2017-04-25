@@ -16,10 +16,10 @@
         </v-btn>
         <v-spacer></v-spacer>
         <v-card-text class="text-xs-center">{{ counters[name].history.length ? 'History: ' + counters[name].history.join(', ') : '' }}</v-card-text>
-        <v-btn success large @click.native='done'>
+        <v-btn success large @click.native='done' class="noselect">
           <v-icon>done</v-icon>
         </v-btn>
-        <v-btn primary large @click.native='increment'>
+        <v-btn primary large @click.native='increment' class="noselect">
           <v-icon class="display-1">plus_one</v-icon>
         </v-btn>
       </v-card-row>
@@ -53,4 +53,12 @@ export default {
 </script>
 
 <style>
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 </style>
